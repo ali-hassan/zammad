@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       load file
     end
   end
+  get '/channels_whatsapp', to: "channels_whatsapp#index"
 
   match '*a', to: 'errors#routing', via: %i[get post put delete options]
 end

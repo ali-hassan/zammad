@@ -188,6 +188,8 @@ GEM
       http_parser.rb (~> 0.6.0)
     equalizer (0.0.11)
     erubi (1.10.0)
+    ethon (0.12.0)
+      ffi (>= 1.3.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
     factory_bot (5.0.2)
@@ -538,6 +540,8 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -565,6 +569,8 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whatsapp (1.0.0)
+      typhoeus (~> 1.3)
     writeexcel (1.0.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -684,6 +690,7 @@ DEPENDENCIES
   vcr
   viewpoint
   webmock
+  whatsapp
   writeexcel
   zendesk_api
 

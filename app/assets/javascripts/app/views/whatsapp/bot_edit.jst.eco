@@ -1,0 +1,22 @@
+<div class="alert alert--danger hidden" role="alert"></div>
+<fieldset>
+  <h2><%- @T('Enter your %s App Keys', 'Whatsapp') %></h2>
+  <div class="input form-group">
+    <div class="formGroup-label">
+      <label for="api_token"><%- Generate API key and add it below %> <span>*</span></label>
+    </div>
+    <div class="controls">
+      <input id="api_token" type="text" name="api_token" value="<%= @channel.options.api_token %>" class="form-control" required autocomplete="off">
+    </div>
+  </div>
+  <h2><%- @T('Settings') %></h2>
+  <div class="input form-group">
+    <div class="formGroup-label">
+      <label for="welcome"><%- Verified whatsapp number %> <span>*</span></label>
+    </div>
+    <div class="controls">
+      <input id="welcome" type="text" name="welcome" value="<%= @channel.options.welcome %>" placeholder="<%- @Ti('Add whatsapp number here e.g your 634481991') %>" class="form-control" required autocomplete="off">
+    </div>
+  </div>
+
+</fieldset>

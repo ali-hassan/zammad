@@ -87,6 +87,7 @@ gem 'omniauth-weibo-oauth2'
 gem 'gmail_xoauth'
 gem 'koala'
 gem 'telegramAPI'
+gem "whatsapp"
 gem 'twitter', git: 'https://github.com/sferik/twitter.git'
 
 # channels - email additions
