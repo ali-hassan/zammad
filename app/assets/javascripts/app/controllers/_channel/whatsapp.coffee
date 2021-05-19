@@ -1,5 +1,5 @@
-class ChannelTelegram extends App.ControllerSubContent
-  requiredPermission: 'admin.channel_telegram'
+class ChannelWhatsapp extends App.ControllerSubContent
+  requiredPermission: 'admin.channel_whatsapp'
   events:
     'click .js-new':     'new'
     'click .js-edit':    'edit'
@@ -16,9 +16,9 @@ class ChannelTelegram extends App.ControllerSubContent
   load: =>
     @startLoading()
     @ajax(
-      id:   'telegram_index'
+      id:   'whatsapp_index'
       type: 'GET'
-      url:  "#{@apiPath}/channels_telegram"
+      url:  "#{@apiPath}/channels_whatsapp"
       processData: true
       success: (data) =>
         @stopLoading()
@@ -38,7 +38,7 @@ class ChannelTelegram extends App.ControllerSubContent
           displayName = group.displayName()
         channel.options.groupName = displayName
       channels.push channel
-    @html App.view('telegram/index')(
+    @html App.view('whatsapp/index')(
       channels: channels
     )
 
@@ -66,9 +66,9 @@ class ChannelTelegram extends App.ControllerSubContent
       message: 'Sure?'
       callback: =>
         @ajax(
-          id:   'telegram_delete'
+          id:   'whatsapp_delete'
           type: 'DELETE'
-          url:  "#{@apiPath}/channels_telegram"
+          url:  "#{@apiPath}/channels_whatsapp"
           data: JSON.stringify(id: id)
           processData: true
           success: =>
@@ -81,9 +81,9 @@ class ChannelTelegram extends App.ControllerSubContent
     e.preventDefault()
     id   = $(e.target).closest('.action').data('id')
     @ajax(
-      id:   'telegram_disable'
+      id:   'whatsapp_disable'
       type: 'POST'
-      url:  "#{@apiPath}/channels_telegram_disable"
+      url:  "#{@apiPath}/channels_whatsapp_disable"
       data: JSON.stringify(id: id)
       processData: true
       success: =>
@@ -94,9 +94,9 @@ class ChannelTelegram extends App.ControllerSubContent
     e.preventDefault()
     id   = $(e.target).closest('.action').data('id')
     @ajax(
-      id:   'telegram_enable'
+      id:   'whatsapp_enable'
       type: 'POST'
-      url:  "#{@apiPath}/channels_telegram_enable"
+      url:  "#{@apiPath}/channels_whatsapp_enable"
       data: JSON.stringify(id: id)
       processData: true
       success: =>
@@ -104,14 +104,14 @@ class ChannelTelegram extends App.ControllerSubContent
     )
 
 class BotAdd extends App.ControllerModal
-  head: 'Add Telegram Bot'
+  head: 'Add Whatsapp Bot'
   shown: true
   button: 'Add'
   buttonCancel: true
   small: true
 
   content: ->
-    content = $(App.view('telegram/bot_add')())
+    content = $(App.view('whatsapp/bot_add')())
     createGroupSelection = (selected_id) ->
       return App.UiElement.select.render(
         name:       'group_id'
@@ -138,9 +138,9 @@ class BotAdd extends App.ControllerModal
   onSubmit: (e) =>
     @formDisable(e)
     @ajax(
-      id:   'telegram_app_verify'
+      id:   'whatsapp_app_verify'
       type: 'POST'
-      url:  "#{@apiPath}/channels_telegram"
+      url:  "#{@apiPath}/channels_whatsapp"
       data: JSON.stringify(@formParams())
       processData: true
       success: =>
@@ -159,7 +159,7 @@ class BotEdit extends App.ControllerModal
   buttonCancel: true
 
   content: ->
-    content = $(App.view('telegram/bot_edit')(channel: @channel))
+    content = $(App.view('whatsapp/bot_edit')(channel: @channel))
 
     createGroupSelection = (selected_id) ->
       return App.UiElement.select.render(
@@ -186,9 +186,9 @@ class BotEdit extends App.ControllerModal
     params = @formParams()
     @channel.options = params
     @ajax(
-      id:   'channel_telegram_update'
+      id:   'channel_whatsapp_update'
       type: 'PUT'
-      url:  "#{@apiPath}/channels_telegram/#{@channel.id}"
+      url:  "#{@apiPath}/channels_whatsapp/#{@channel.id}"
       data: JSON.stringify(@formParams())
       processData: true
       success: =>
@@ -201,6 +201,6 @@ class BotEdit extends App.ControllerModal
         @el.find('.alert').removeClass('hidden').text(error_message)
     )
 
-App.Config.set('Telegram', { prio: 5100, name: 'Telegram', parent: '#channels', target: '#channels/telegram', controller: ChannelTelegram, permission: ['admin.channel_telegram'] }, 'NavBarAdmin')
+#App.Config.set('Telegram', { prio: 5100, name: 'Telegram', parent: '#channels', target: '#channels/whatsapp', controller: ChannelWhatsapp, permission: ['admin.channel_whatsapp'] }, 'NavBarAdmin')
 
-#App.Config.set('Whatsapp', { prio: 5100, name: 'Whatsapp', parent: '#channels', target: '#channels/whatsapp', controller: ChannelWhatsapp, permission: ['admin.channel_telegram'] }, 'NavBarAdmin')
+App.Config.set('Whatsapp', { prio: 5100, name: 'Whatsapp', parent: '#channels', target: '#channels/whatsapp', controller: ChannelWhatsapp, permission: ['admin.channel_whatsapp'] }, 'NavBarAdmin')
